@@ -1,6 +1,6 @@
 # 🚦 Akıllı Şehir Trafik Yönetimi ve Rota Optimizasyon Sistemi
 
-Bu proje, **Nesneye Yönelik Programlama (OOP)** prensipleri, **SOLID** tasarım ilkeleri ve **Tasarım Kalıpları (Design Patterns)** kullanılarak geliştirilmiş bir şehir içi trafik analiz, acil durum geçiş üstünlüğü (Yeşil Dalga) ve dinamik rota hesaplama simülasyonudur.
+Bu proje, **Nesneye Yönelik Programlama (OOP)** prensipleri, **SOLID** tasarım ilkeleri ve **Tasarım Kalıpları (Design Patterns)** kullanılarak geliştirilmiş bir şehir içi trafik yoğunluğu analiz, acil durum geçiş üstünlüğü (Yeşil Dalga) ve dinamik rota hesaplama simülasyonudur.
 
 ---
 
@@ -8,7 +8,7 @@ Bu proje, **Nesneye Yönelik Programlama (OOP)** prensipleri, **SOLID** tasarım
 
 * **Trafik Yoğunluğu Analizi:** Şehirdeki tüm yolların kapasite/araç oranlarını analiz eder, darboğaz (`%80+ KRİTİK`) oluşan güzergahları raporlar (`TrafficAnalyzerService`).
 * **Dinamik Ağırlıklı Dijkstra Algoritması:** Sadece fiziksel mesafeyi (km) değil, anlık trafik yoğunluğunu ve aracın geçiş üstünlüğü katsayısını hesaba katarak en optimum rotayı bulur (`SmartTrafficRouteStrategy`).
-* **Acil Durum Yeşil Dalga Sistemi:** Ambulans, İtfaiye gibi acil durum araçları sevk edildiğinde güzergah üzerindeki kavşaklar otomatik olarak uyarılır ve trafik ışıkları `EMERGENCY_GREEN` moduna geçer (`EmergencyDispatchService`).
+* **Acil Durum Yeşil Dalga Sistemi:** Ambulans, İtfaiye ve Polis gibi acil durum araçları sevk edildiğinde güzergah üzerindeki kavşaklar otomatik olarak uyarılır ve trafik ışıkları `EMERGENCY_GREEN` moduna geçer (`EmergencyDispatchService`).
 * **Kalıcı Veri Yönetimi (Persistence):** Eklenen tüm kavşaklar, yollar, trafik ışığı durumları ve anlık araç sayıları `data/traffic_data.txt` dosyasında kalıcı olarak saklanır (`FileRepository`).
 * **Birim Testleri:** Sistemin tüm kritik işlevleri **JUnit 5** ile yazılmış **8 kapsamlı birim testi** (`TrafficSystemTest`) ile doğrulanmıştır.
 
@@ -43,6 +43,28 @@ $$\text{Yol Maliyeti} = \text{Mesafe (km)} \times \left(1 + \left(\frac{\text{An
 
 * **Normal Araç (`StandardVehicle`):** Ceza katsayısı `2.5` olduğu için yoğun yollarda maliyet katlanarak artar ve araç alternatif açık rotalara yönlendirilir.
 * **Acil Durum Aracı (`EmergencyVehicle`):** Ceza katsayısı `0.15` olduğu ve kavşaklarda yeşil dalga açıldığı için yoğunluktan minimum etkilenir, en hızlı ana arterden hedefe ulaşır.
+
+---
+
+## 📂 Proje Dizin Yapısı
+
+```text
+smart-city-traffic-management/
+├── data/
+│   └── traffic_data.txt                 # Kalıcı şehir haritası ve trafik verileri
+├── src/
+│   ├── main/java/tr/edu/traffic/
+│   │   ├── model/                       # OOP varlık sınıfları, Enum ve Observer arayüzü
+│   │   ├── repository/                  # Dosya okuma/yazma işlemleri (FileRepository)
+│   │   ├── service/                     # Graf yönetimi, analiz ve acil durum servisleri
+│   │   ├── strategy/                    # Dinamik Dijkstra algoritması (Strategy Pattern)
+│   │   └── Main.java                    # İnteraktif konsol arayüzü (CLI)
+│   └── test/java/tr/edu/traffic/
+│       └── TrafficSystemTest.java       # 8 adet JUnit 5 birim testi
+├── pom.xml                              # Maven proje ve bağımlılık yapılandırması
+├── proje_takimi.txt                     # Proje ekibi ve görev dağılımı
+└── README.md                            # Proje dokümantasyonu ve UML diyagramı
+```
 
 ---
 
@@ -167,24 +189,27 @@ classDiagram
 
 ## 🚀 Kurulum ve Çalıştırma
 
-1. Depoyu klonlayın:
+1. Depoyu bilgisayarınıza klonlayın:
    ```bash
-   git clone [https://github.com/uzeyir-kullanici-adi/smart-city-traffic-management.git](https://github.com/uzeyir-kullanici-adi/smart-city-traffic-management.git)
+   git clone [https://github.com/uzeyircavusoglu43-create/smart-city-traffic-management.git](https://github.com/uzeyircavusoglu43-create/smart-city-traffic-management.git)
    cd smart-city-traffic-management
    ```
 2. Birim testlerini çalıştırın (JUnit 5):
    ```bash
    mvn test
    ```
-3. Uygulamayı başlatmak için IDE üzerinden `tr.edu.traffic.Main` sınıfını çalıştırın.
+3. Uygulamayı başlatmak için IDE üzerinden `tr.edu.traffic.Main` sınıfını çalıştırın veya konsoldan derleyin:
+   ```bash
+   mvn compile exec:java -Dexec.mainClass="tr.edu.traffic.Main"
+   ```
 
 ---
 
 ## 👨‍💻 Geliştirici Ekibi (Contributors)
 
-Bu proje ekip çalışması, Git Branch yönetimi ve Pull Request (Code Review) süreçleri uygulanarak geliştirilmiştir:
+Bu proje ekip çalışması, katmanlı mimari ve versiyon kontrol süreçleri uygulanarak geliştirilmiştir:
 
 | Geliştirici | Rol & Sorumluluk Alanı | GitHub Profili |
 | :--- | :--- | :--- |
 | **Üzeyir Çavuşoğlu** | Core OOP Mimarisi, Şehir Graf Yapısı (`CityMap`), Dinamik Dijkstra Algoritması (`Strategy Pattern`) & Acil Durum Yeşil Dalga Sistemi (`Observer Pattern`) | [@uzeyircavusoglu43-create](https://github.com/uzeyircavusoglu43-create) |
-| **Arda Yılmaz** | Trafik Yoğunluk Analiz Servisi, Kalıcı Dosya Yönetimi (`FileRepository`), İnteraktif Konsol Arayüzü (`Main`), JUnit 5 Birim Testleri & Dokümantasyon | [@arda-ai28](https://github.com/Arda-ai28) |
+| **Arda Yılmaz** | Trafik Yoğunluk Analiz Servisi (`TrafficAnalyzerService`), Kalıcı Dosya Yönetimi (`FileRepository`), İnteraktif Konsol Arayüzü (`Main`), JUnit 5 Birim Testleri & Dokümantasyon | [@arda-ai28](https://github.com/arda-ai28) |
