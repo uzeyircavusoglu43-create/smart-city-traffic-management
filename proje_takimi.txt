@@ -1,8 +1,6 @@
-========================================================================
 NESNEYE YÖNELİK PROGRAMLAMA PROJE ÖDEVİ - PROJE TAKIMI VE GÖREV DAĞILIMI
 Proje Konusu: Akıllı Şehir Trafik Yönetimi: Trafik yoğunluğu analizi,
               acil araç önceliği ve en uygun rota hesaplama
-========================================================================
 
 1. Grup Üyesi:
 - Öğrenci Numarası : 1250505026
@@ -19,7 +17,3 @@ Proje Konusu: Akıllı Şehir Trafik Yönetimi: Trafik yoğunluğu analizi,
   * Trafik yoğunluğu analiz ve darboğaz raporlama servisinin (TrafficAnalyzerService) geliştirilmesi.
   * Verilerin kalıcı olarak dosyaya kaydedilmesi ve okunması sisteminin (FileRepository) kodlanması.
   * İnteraktif konsol arayüzünün (Main), 8 adet JUnit 5 birim testinin (TrafficSystemTest), UML Sınıf Diyagramının ve README.md dokümantasyonunun hazırlanması.
-
-========================================================================
-GitHub Depo Bağlantısı:
-========================================================================
