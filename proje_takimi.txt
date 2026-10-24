@@ -1,0 +1,25 @@
+========================================================================
+NESNEYE YÖNELİK PROGRAMLAMA PROJE ÖDEVİ - PROJE TAKIMI VE GÖREV DAĞILIMI
+Proje Konusu: Akıllı Şehir Trafik Yönetimi: Trafik yoğunluğu analizi,
+              acil araç önceliği ve en uygun rota hesaplama
+========================================================================
+
+1. Grup Üyesi:
+- Öğrenci Numarası : 1250505026
+- Adı Soyadı       : Üzeyir Çavuşoğlu
+- Görevi           :
+  * Temel OOP model sınıflarının (Vehicle, StandardVehicle, EmergencyVehicle, Intersection, Road) ve kapsülleme, kalıtım, soyutlama, çok biçimlilik yapılarının tasarlanması.
+  * Şehir graf veri yapısının (CityMap) ve Dinamik Ağırlıklı Dijkstra Algoritmasının (SmartTrafficRouteStrategy - Strategy Pattern) kodlanması.
+  * Acil durum araç önceliği ve kavşak yeşil dalga bildirim sisteminin (EmergencyDispatchService - Observer Pattern) geliştirilmesi.
+
+2. Grup Üyesi:
+- Öğrenci Numarası : 1250505020
+- Adı Soyadı       : Arda Yılmaz
+- Görevi           :
+  * Trafik yoğunluğu analiz ve darboğaz raporlama servisinin (TrafficAnalyzerService) geliştirilmesi.
+  * Verilerin kalıcı olarak dosyaya kaydedilmesi ve okunması sisteminin (FileRepository) kodlanması.
+  * İnteraktif konsol arayüzünün (Main), 8 adet JUnit 5 birim testinin (TrafficSystemTest), UML Sınıf Diyagramının ve README.md dokümantasyonunun hazırlanması.
+
+========================================================================
+GitHub Depo Bağlantısı:
+========================================================================
